@@ -1,0 +1,26 @@
+<body>
+  {{> blocks}}
+</body>
+ 
+<template name="block">
+    <div class="block">
+      edit the block below
+	  <div class="editor" contenteditable="true">{{{text}}}</div>
+      <br/><br/>the text below is constant, it should not changeif you edit<br/>
+	  <div >{{{text}}}</div>
+      <br/><br/>the random number is constant, it should not change if you edit<br/>
+      <div>random {{random}}</div>
+	    </div>
+</template>
+ 
+<template name="blocks">
+  {{#if blocksLoading}}
+    loading
+  {{else}}
+  {{#each blocks}}
+      {{#constant}}
+  {{> block}}
+      {{/constant}}
+  {{/each}}
+  {{/if}}
+</template>
