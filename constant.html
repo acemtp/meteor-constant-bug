@@ -1,26 +1,29 @@
 <body>
-  {{> blocks}}
+  {{> main}}
 </body>
+
+<template name="main">
+  {{#if blocksLoading}}
+    {{> loading}}
+  {{else}}
+    {{> blocks}}
+  {{/if}}
+</template>
  
-<template name="block">
-    <div class="block">
-      edit the block below
-	  <div class="editor" contenteditable="true">{{{text}}}</div>
-      <br/><br/>the text below is constant, it should not changeif you edit<br/>
-	  <div >{{{text}}}</div>
-      <br/><br/>the random number is constant, it should not change if you edit<br/>
-      <div>random {{random}}</div>
-	    </div>
+<template name="loading">
+  loading...
 </template>
  
 <template name="blocks">
-  {{#if blocksLoading}}
-    loading
-  {{else}}
   {{#each blocks}}
-      {{#constant}}
-  {{> block}}
-      {{/constant}}
+    {{> block}}
   {{/each}}
-  {{/if}}
+  <p>if you click on 'bing', in the console.log you'll see that the template instance is deleted and recreated but only on first click.</p>
+  <button class="btn">bing</button>
+</template>
+
+<template name="block">
+  <div class="block">
+    foobar
+  </div>
 </template>
